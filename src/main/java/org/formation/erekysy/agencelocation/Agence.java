@@ -12,7 +12,13 @@ public class Agence {
 		this.voiture = voiture;
 	}
 	
-	public void acceuillir() {
+	public void acceuillir(Client client) throws VoitureDejaLouerException{
+		if(getVoiture().getIsValable()==false) {
+			new VoitureDejaLouerException();
+		}else {
+			getVoiture().setValable(false);
+			client.louer(getVoiture());
+		}
 		
 	}
 }

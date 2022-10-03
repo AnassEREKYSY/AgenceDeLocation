@@ -22,7 +22,7 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public void louer(Voiture v) {
+	public void louer(Voiture v) throws HuileInsuffisasntException {
 		v.demarer(new Moteur());
 	}
 	public void rendre() {
