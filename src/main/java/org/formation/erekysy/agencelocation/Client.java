@@ -22,8 +22,8 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public void louer() {
-		
+	public void louer(Voiture v) {
+		v.demarer(new Moteur());
 	}
 	public void rendre() {
 		
