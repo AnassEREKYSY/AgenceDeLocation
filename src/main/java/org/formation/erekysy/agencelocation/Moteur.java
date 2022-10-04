@@ -1,43 +1,45 @@
 package org.formation.erekysy.agencelocation;
 
+import java.util.ArrayList;
 
 public class Moteur {
-	private Cylindre[] cylindre;
-	private int quantite_huile=5;
+	private ArrayList<Cylindre> cylindre;
+	private static int quantite_huile=5;
 	
-	public Moteur() {
-		this.setCylindre(new Cylindre[2]);
-	}
 	
 	public Moteur(int nombre_cylindre) {
-		this.setCylindre(new Cylindre[nombre_cylindre]);
-		
+		cylindre = new ArrayList<Cylindre>(nombre_cylindre);
 	}
-	public Cylindre[] getCylindre() {
+	public ArrayList<Cylindre> getCylindre() {
 		return cylindre;
 	}
-	public void setCylindre(Cylindre[] cylindre) {
+	public void setCylindre(ArrayList<Cylindre> cylindre) {
 		this.cylindre = cylindre;
 	}
 	public int getQuantite_huile() {
 		return quantite_huile;
 	}
 	public void setQuantite_huile(int quantite_huile) {
-		this.quantite_huile=quantite_huile; 
-	}
-	public void setQuantite_huile() {
-		this.quantite_huile--; 
+		Moteur.quantite_huile=quantite_huile; 
 	}
 	
 	public void lancer() {
-		for(int i=0;i<getCylindre().length;i++) {
-			if(getCylindre()[i]!=null) {
-				System.out.println("cylindre n° "+(i+1)+getCylindre()[i].afficher_etat());
+		for(int i=0;i<getCylindre().size();i++) {
+			if(getCylindre().get(i)!=null) {
+				System.out.println("cylindre n° "+(i+1)+" "+getCylindre().get(i).afficher_etat());
 			}
 		}
+		System.out.println("Etat d'huile: "+quantite_huile+"\n");
 	}
 	public void changer_huile() {
 		setQuantite_huile(5);
+		System.out.println("Huile changé avec succée!!\n");
+	}
+	
+	public void changer_cylindre(int nb) {
+		for(int i=0;i<nb;i++) {
+			getCylindre().add(new Cylindre());
+		}
 	}
 
 }

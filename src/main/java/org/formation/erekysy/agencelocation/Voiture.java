@@ -7,25 +7,30 @@ public class Voiture {
 	private Moteur moteur;
 	private int nombre_cylindre;
 	private boolean isValable=true;
-	public Voiture() {
-		this.setMoteur(new Moteur());
-	}
+
 	public Voiture(int nombre_cylindre) {
 		this.setMoteur(new Moteur(nombre_cylindre));
+		
 	}
 
-	public void demarer(Moteur m) throws HuileInsuffisasntException{
-		if(m.getQuantite_huile()==0) {
-			Scanner sc=new Scanner(System.in);
+	public void demarer() throws HuileInsuffisasntException{
+		if(getMoteur().getQuantite_huile()==0) {
 			new HuileInsuffisasntException();
-			while(sc.nextInt()==1) {
+			Scanner sc=new Scanner(System.in);
+			int a=0;
+			while(a!=1) {
 				System.out.println("Taper 1 pour changer l'huile:");
-				sc.nextLine();
+				a=sc.nextInt();
 			}
-			m.changer_huile();
+			getMoteur().changer_huile();
+			System.out.println("voiture démarée\\n");
+			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
+			getMoteur().lancer();
+		}else {
+			System.out.println("voiture démarée\n");
+			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
+			getMoteur().lancer();
 		}
-		System.out.println("voiture démarée");
-		m.lancer();
 	}
 	
 	public Moteur ouvrir_capot() {

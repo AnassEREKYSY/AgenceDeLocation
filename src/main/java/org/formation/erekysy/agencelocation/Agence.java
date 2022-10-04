@@ -14,33 +14,49 @@ public class Agence {
 		this.voiture = voiture;
 	}
 	
-	public void acceuillir() throws VoitureDejaLouerException, HuileInsuffisasntException{
+	public void acceuillir(Client client) throws VoitureDejaLouerException, HuileInsuffisasntException{
+		@SuppressWarnings("resource")
 		Scanner sc=new Scanner(System.in);
-		Client c ;
-		System.out.println("Bonjour et bienvenu dans l'agence de location des voiture:");
-		System.out.println("voulez-vous louer une voiture:");
-		sc.nextLine();
-		System.out.println("Pouvez vous me donner votre nom pour valider la location:");
-		String nom=sc.nextLine();
-		System.out.println("Pouvez vous me donner votre age pour valider la location:");
-		int age=sc.nextInt();
-		c =new Client(nom,age);
-		int nb=0;
-		while(nb<2) {
-			System.out.println("Vous voulez combien de cylindres dans votre voiture? (2+):");
-			nb=sc.nextInt();
-		}
-		if(getVoiture().getIsValable()==false) {
-			if(c.getAlouer()==true) {
-				c.rendre();
-			}else {
-				new VoitureDejaLouerException();
+		int nb=0,reponse=0;
+		while(reponse!=3) {
+			System.out.println("\n1-Location de voiture");
+			System.out.println("2-Rendre une voiture");
+			System.out.println("3-Quitter\n");
+			reponse=sc.nextInt();
+			switch(reponse) {
+				case 1:{
+					System.out.println("----------------1-Location de voiture----------------");
+					if(getVoiture().getIsValable()==false) {
+						new VoitureDejaLouerException();
+					}else {
+						while(nb<2) {
+							System.out.println("Vous voulez combien de cylindres dans votre voiture? (2+):");
+							nb=sc.nextInt();
+							getVoiture().getMoteur().changer_cylindre(nb);
+						}
+						nb=0;
+						getVoiture().setValable(false);
+						client.setAlouer(true);
+						client.louer(getVoiture());
+					}
+					break;
+				}
+				case 2:{
+					System.out.println("----------------2-Rendre une voiture----------------");
+					getVoiture().setValable(true);
+					client.rendre();
+					System.out.println("c'est fait vous avez rendu la voiture merci");
+					System.out.println("");
+					break;
+				}
+				case 3:{
+					System.out.println("----------------Au revoire----------------");
+					break;
+				}
 			}
-		}else {
-			getVoiture().setValable(false);
-			c.louer(getVoiture(),nb);
-			c.setAlouer(true);
+
 		}
+		
 		
 	}
 }
