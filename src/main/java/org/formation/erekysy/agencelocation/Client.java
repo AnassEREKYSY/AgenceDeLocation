@@ -29,8 +29,9 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public void louer(Voiture v) throws HuileInsuffisasntException {
-		v.demarer(new Moteur());
+	public void louer(Voiture v, int nb) throws HuileInsuffisasntException {
+		v.demarer(new Moteur(nb));
+		v.getMoteur().lancer();;
 	}
 	public void rendre() {
 		setAlouer(false);

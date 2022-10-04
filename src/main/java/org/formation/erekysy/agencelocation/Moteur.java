@@ -5,12 +5,13 @@ public class Moteur {
 	private Cylindre[] cylindre;
 	private int quantite_huile=5;
 	
+	public Moteur() {
+		this.setCylindre(new Cylindre[2]);
+	}
+	
 	public Moteur(int nombre_cylindre) {
 		this.setCylindre(new Cylindre[nombre_cylindre]);
 		
-	}
-	public Moteur() {
-		this.setCylindre(new Cylindre[2]);
 	}
 	public Cylindre[] getCylindre() {
 		return cylindre;
@@ -32,8 +33,6 @@ public class Moteur {
 		for(int i=0;i<getCylindre().length;i++) {
 			if(getCylindre()[i]!=null) {
 				System.out.println("cylindre n° "+(i+1)+getCylindre()[i].afficher_etat());
-			}else {
-				break;
 			}
 		}
 	}

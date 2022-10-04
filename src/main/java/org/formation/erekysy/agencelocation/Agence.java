@@ -14,24 +14,32 @@ public class Agence {
 		this.voiture = voiture;
 	}
 	
-	public void acceuillir(Client client) throws VoitureDejaLouerException, HuileInsuffisasntException{
+	public void acceuillir() throws VoitureDejaLouerException, HuileInsuffisasntException{
 		Scanner sc=new Scanner(System.in);
+		Client c ;
 		System.out.println("Bonjour et bienvenu dans l'agence de location des voiture:");
 		System.out.println("voulez-vous louer une voiture:");
 		sc.nextLine();
+		System.out.println("Pouvez vous me donner votre nom pour valider la location:");
+		String nom=sc.nextLine();
+		System.out.println("Pouvez vous me donner votre age pour valider la location:");
+		int age=sc.nextInt();
+		c =new Client(nom,age);
+		int nb=0;
+		while(nb<2) {
+			System.out.println("Vous voulez combien de cylindres dans votre voiture? (2+):");
+			nb=sc.nextInt();
+		}
 		if(getVoiture().getIsValable()==false) {
-			if(client.getAlouer()==true) {
-				client.rendre();
+			if(c.getAlouer()==true) {
+				c.rendre();
 			}else {
 				new VoitureDejaLouerException();
 			}
 		}else {
-			System.out.println("Pouvez vous me donner votre nom pour valider la location:");
-			String nom=sc.nextLine();
-			Client c =new Client(nom,age);
 			getVoiture().setValable(false);
-			client.louer(getVoiture());
-			client.setAlouer(true);
+			c.louer(getVoiture(),nb);
+			c.setAlouer(true);
 		}
 		
 	}
