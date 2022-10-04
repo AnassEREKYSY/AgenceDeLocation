@@ -30,7 +30,11 @@ public class Moteur {
 	
 	public void lancer() {
 		for(int i=0;i<getCylindre().length;i++) {
-			System.out.println("cylindre n° "+(i+1)+getCylindre()[i].afficher_etat());
+			if(getCylindre()[i]!=null) {
+				System.out.println("cylindre n° "+(i+1)+getCylindre()[i].afficher_etat());
+			}else {
+				break;
+			}
 		}
 	}
 	public void changer_huile() {

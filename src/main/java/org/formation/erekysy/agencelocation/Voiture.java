@@ -22,7 +22,7 @@ public class Voiture {
 				System.out.println("Taper 1 pour changer l'huile:");
 				sc.nextLine();
 			}
-			m.setQuantite_huile(5);
+			m.changer_huile();
 		}
 		System.out.println("voiture démarée");
 		m.lancer();

@@ -3,6 +3,13 @@ package org.formation.erekysy.agencelocation;
 public class Client {
 	private int age;
 	private String nom,prenom;
+	private boolean alouer=false;
+	
+	public Client(String n, int a) {
+		setNom(n);
+		setPrenom("xxx");
+		setAge(a);
+	}
 	public int getAge() {
 		return age;
 	}
@@ -26,6 +33,13 @@ public class Client {
 		v.demarer(new Moteur());
 	}
 	public void rendre() {
+		setAlouer(false);
 		
+	}
+	public boolean getAlouer() {
+		return alouer;
+	}
+	public void setAlouer(boolean alouer) {
+		this.alouer = alouer;
 	}
 }
