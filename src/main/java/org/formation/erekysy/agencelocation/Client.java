@@ -1,10 +1,19 @@
 package org.formation.erekysy.agencelocation;
-
+/**
+ * La classe client contient la definition du client
+ * @author hp
+ *
+ */
 public class Client {
 	private int age;
 	private String nom,prenom;
 	private boolean alouer=false;
 	
+	/**
+	 * Constructeur de la classe Client
+	 * @param n le nom
+	 * @param a l'age
+	 */
 	public Client(String n, int a) {
 		setNom(n);
 		setPrenom("xxx");
@@ -28,18 +37,26 @@ public class Client {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	public void louer(Voiture v) throws HuileInsuffisasntException {
-		v.demarer();
-	}
-	public void rendre() {
-		setAlouer(false);
-		
-	}
 	public boolean getAlouer() {
 		return alouer;
 	}
 	public void setAlouer(boolean alouer) {
 		this.alouer = alouer;
+	}
+	/**
+	 * methode louer qui fait louer une voiture au client 
+	 * @param v voiture
+	 * @throws HuileInsuffisasntException
+	 */
+	public void louer(Voiture v) throws HuileInsuffisasntException {
+		v.demarer();
+		v.setValable(false);
+		setAlouer(true);
+	}
+	/**
+	 * methode rendre qui fait rendre la voiture louer par l client
+	 */
+	public void rendre() {
+		setAlouer(false);
 	}
 }

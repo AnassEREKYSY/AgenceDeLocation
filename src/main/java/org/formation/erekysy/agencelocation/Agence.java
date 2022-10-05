@@ -2,8 +2,18 @@ package org.formation.erekysy.agencelocation;
 
 import java.util.Scanner;
 
+/**
+ * La classe Agence c'est la classe qui represente la definition d'une agence
+ * @author hp
+ *
+ */
 public class Agence {
 	private Voiture voiture;
+	
+	/**
+	 * Constructeur de la classe Agence
+	 * @param v voiture
+	 */
 	public Agence(Voiture v) {
 		this.setVoiture(v);
 	}
@@ -14,14 +24,21 @@ public class Agence {
 		this.voiture = voiture;
 	}
 	
+	/**
+	 * Methode acceuillir qui montre un menu des choix au client passé par ses parametre
+	 * @param client
+	 * @throws VoitureDejaLouerException
+	 * @throws HuileInsuffisasntException
+	 */
 	public void acceuillir(Client client) throws VoitureDejaLouerException, HuileInsuffisasntException{
 		@SuppressWarnings("resource")
 		Scanner sc=new Scanner(System.in);
 		int nb=0,reponse=0;
-		while(reponse!=3) {
+		while(reponse!=4) {
 			System.out.println("\n1-Location de voiture");
 			System.out.println("2-Rendre une voiture");
-			System.out.println("3-Quitter\n");
+			System.out.println("3-Ouvrir le capot");
+			System.out.println("4-Quitter\n");
 			reponse=sc.nextInt();
 			switch(reponse) {
 				case 1:{
@@ -35,21 +52,40 @@ public class Agence {
 							getVoiture().getMoteur().changer_cylindre(nb);
 						}
 						nb=0;
-						getVoiture().setValable(false);
-						client.setAlouer(true);
 						client.louer(getVoiture());
+						System.out.println("Location faite avec succée, fait attention dans la route");
 					}
 					break;
 				}
 				case 2:{
 					System.out.println("----------------2-Rendre une voiture----------------");
-					getVoiture().setValable(true);
-					client.rendre();
-					System.out.println("c'est fait vous avez rendu la voiture merci");
-					System.out.println("");
-					break;
+					if(client.getAlouer()==false) {
+						System.out.println("vous n avez rien a nous rendre taper 1 si vous voulez louer une voiture");
+						break;
+					}else {
+						getVoiture().setValable(true);
+						client.rendre();
+						System.out.println("c'est fait vous avez rendu la voiture merci à la prochaine");
+						System.out.println("");
+						break;
+					}
 				}
 				case 3:{
+					System.out.println("----------------3-Ouvrir le capot----------------");
+					if(client.getAlouer()==false) {
+						new NonClientException();
+						break;
+					}else {
+						Moteur m=getVoiture().ouvrir_capot();
+						System.out.println("Vous avez un moteur de "+m.getCylindre().size()+ " cylindres ");
+						System.out.println("---Etat des cylindres---");
+						for(int i=0;i<m.getCylindre().size();i++) {
+							System.out.println("cylindre n° "+(i+1)+" "+m.getCylindre().get(i).afficher_etat());
+						}	
+						break;
+					}
+				}
+				case 4:{
 					System.out.println("----------------Au revoire----------------");
 					break;
 				}

@@ -1,18 +1,28 @@
 package org.formation.erekysy.agencelocation;
 
 import java.util.Scanner;
-
+/**
+ * classe Voiture represente la definition d'une voiture
+ * @author hp
+ *
+ */
 public class Voiture {
 	
 	private Moteur moteur;
-	private int nombre_cylindre;
 	private boolean isValable=true;
 
-	public Voiture(int nombre_cylindre) {
-		this.setMoteur(new Moteur(nombre_cylindre));
+	/**
+	 * constructeur de la classe Voiture
+	 */
+	public Voiture() {
+		this.setMoteur(new Moteur());
 		
 	}
-
+	/**
+	 * methode demarer fait demarer le moteur de la voiture en afficheant l'etat des cylindres 
+	 * et en testant si l'huile est suffisant ou pas
+	 * @throws HuileInsuffisasntException
+	 */
 	public void demarer() throws HuileInsuffisasntException{
 		if(getMoteur().getQuantite_huile()==0) {
 			new HuileInsuffisasntException();
@@ -23,16 +33,19 @@ public class Voiture {
 				a=sc.nextInt();
 			}
 			getMoteur().changer_huile();
+			getMoteur().lancer();
 			System.out.println("voiture démarée\\n");
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
-			getMoteur().lancer();
 		}else {
+			getMoteur().lancer();
 			System.out.println("voiture démarée\n");
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
-			getMoteur().lancer();
 		}
 	}
-	
+	/**
+	 * methode ouvrir le capot qui returne le moteur de la voiture
+	 * @return
+	 */
 	public Moteur ouvrir_capot() {
 		return getMoteur();
 	}
@@ -45,13 +58,6 @@ public class Voiture {
 		this.moteur = moteur;
 	}
 
-	public int getNombre_cylindre() {
-		return nombre_cylindre;
-	}
-
-	public void setNombre_cylindre(int nombre_cylindre) {
-		this.nombre_cylindre = nombre_cylindre;
-	}
 	public boolean getIsValable() {
 		return isValable;
 	}
