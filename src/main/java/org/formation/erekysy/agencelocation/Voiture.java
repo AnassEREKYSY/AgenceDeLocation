@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Voiture {
 	
 	private Moteur moteur;
-	private boolean isValable=true;
+	private boolean isValable=true; 
 
 	/**
 	 * constructeur de la classe Voiture
@@ -31,19 +31,30 @@ public class Voiture {
 			while(a!=1) {
 				System.out.println("Taper 1 pour changer l'huile:");
 				a=sc.nextInt();
+			} 
+			boolean b=getMoteur().changer_huile();
+			if(b) {
+				System.out.println("Huile changé avec succée!!\n");
 			}
-			getMoteur().changer_huile();
-			getMoteur().lancer();
+			String[] str=getMoteur().Etat_moteur();
+			for(int i=0;i<str.length;i++) {
+				System.out.println(str[i]); 
+			}
+			System.out.println("Etat d'huile: "+getMoteur().getQuantite_huile()+"\n");
 			System.out.println("voiture démarée\\n");
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
 		}else {
-			getMoteur().lancer();
+			String[] str=getMoteur().Etat_moteur();
+			for(int i=0;i<str.length;i++) {
+				System.out.println(str[i]);
+			}
+			System.out.println("Etat d'huile: "+getMoteur().getQuantite_huile()+"\n");
 			System.out.println("voiture démarée\n");
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
 		}
 	}
 	/**
-	 * methode ouvrir le capot qui returne le moteur de la voiture
+	 * methode ouvrir le capot qui returne l'etat du moteur de la voiture
 	 * @return
 	 */
 	public Moteur ouvrir_capot() {

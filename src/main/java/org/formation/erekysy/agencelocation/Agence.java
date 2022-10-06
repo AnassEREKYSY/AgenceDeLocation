@@ -68,7 +68,7 @@ public class Agence {
 						System.out.println("c'est fait vous avez rendu la voiture merci à la prochaine");
 						System.out.println("");
 						break;
-					}
+					} 
 				}
 				case 3:{
 					System.out.println("----------------3-Ouvrir le capot----------------");
@@ -77,10 +77,11 @@ public class Agence {
 						break;
 					}else {
 						Moteur m=getVoiture().ouvrir_capot();
-						System.out.println("Vous avez un moteur de "+m.getCylindre().size()+ " cylindres ");
+						String[] str=m.Etat_moteur();
+						System.out.println("Vous avez un moteur de "+str.length+ " cylindres ");
 						System.out.println("---Etat des cylindres---");
-						for(int i=0;i<m.getCylindre().size();i++) {
-							System.out.println("cylindre n° "+(i+1)+" "+m.getCylindre().get(i).afficher_etat());
+						for(int i=0;i<str.length;i++) {
+							System.out.println(str[i]);
 						}	
 						break;
 					}

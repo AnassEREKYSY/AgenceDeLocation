@@ -14,13 +14,7 @@ public class Moteur {
 	 * constructeur de la classe Moteur
 	 */
 	public Moteur() {
-		setCylindre(new ArrayList<Cylindre>());
-	}
-	public ArrayList<Cylindre> getCylindre() {
-		return cylindre;
-	}
-	public void setCylindre(ArrayList<Cylindre> cylindre) {
-		this.cylindre = cylindre;
+		this.cylindre=new ArrayList<Cylindre>();
 	}
 	public int getQuantite_huile() {
 		return quantite_huile;
@@ -28,21 +22,27 @@ public class Moteur {
 	public void setQuantite_huile(int quantite_huile) {
 		Moteur.quantite_huile=quantite_huile; 
 	}
+	
 	/**
-	 * methode lancer est une methode qui affiche l'etat de chaque cylindre du moteur
+	 * methode qui affiche l'etat du moteur et l'etat de ses cylindres
+	 * @return tableau de String
 	 */
-	public void lancer() {
-		for(int i=0;i<getCylindre().size();i++) {
-			System.out.println("cylindre n° "+(i+1)+" "+getCylindre().get(i).afficher_etat());
-		}
-		System.out.println("Etat d'huile: "+quantite_huile+"\n");
+	public String[] Etat_moteur() {
+		String[] str=new String[cylindre.size()];
+		for(int i=0;i<str.length;i++) {
+			str[i]= "cylindre n° "+(i+1)+" "+cylindre.get(i).afficher_etat();
+		}	
+		return str;
 	}
+	
 	/**
 	 * methode changer_huile fait changer l'huile du moteur
+	 * @return true
 	 */
-	public void changer_huile() {
+	public boolean changer_huile() {
 		setQuantite_huile(5);
 		System.out.println("Huile changé avec succée!!\n");
+		return true;
 	}
 	
 	/**
@@ -50,17 +50,15 @@ public class Moteur {
 	 * @param nb
 	 */
 	public void changer_cylindre(int nb) {
-		if(getCylindre().size()==0) {
+		if(cylindre.size()==0) {
 			for(int i=0;i<nb;i++) {
-				getCylindre().add(i, new Cylindre());
+				cylindre.add(i, new Cylindre());
 			}
 		}else {
-			getCylindre().clear();
+			cylindre.clear();
 			for(int i=0;i<nb;i++) {
-				getCylindre().add(i, new Cylindre());
+				cylindre.add(i, new Cylindre());
 			}
 		}
-		
 	}
-
 }
