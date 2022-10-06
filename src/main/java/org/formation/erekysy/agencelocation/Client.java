@@ -35,7 +35,7 @@ public class Client {
 		return prenom;
 	}
 	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+		this.prenom = prenom; 
 	}
 	public boolean getAlouer() {
 		return alouer;
@@ -49,7 +49,8 @@ public class Client {
 	 * @throws HuileInsuffisasntException
 	 */
 	public void louer(Voiture v) throws HuileInsuffisasntException {
-		v.demarer();
+		String s=v.demarer();
+		System.out.println(s);
 		v.setValable(false);
 		setAlouer(true);
 	}

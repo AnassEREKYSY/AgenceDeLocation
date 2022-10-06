@@ -23,7 +23,7 @@ public class Voiture {
 	 * et en testant si l'huile est suffisant ou pas
 	 * @throws HuileInsuffisasntException
 	 */
-	public void demarer() throws HuileInsuffisasntException{
+	public String demarer() throws HuileInsuffisasntException{
 		if(getMoteur().getQuantite_huile()==0) {
 			new HuileInsuffisasntException();
 			Scanner sc=new Scanner(System.in);
@@ -41,16 +41,16 @@ public class Voiture {
 				System.out.println(str[i]); 
 			}
 			System.out.println("Etat d'huile: "+getMoteur().getQuantite_huile()+"\n");
-			System.out.println("voiture démarée\\n");
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
+			return "voiture démarée\n";
 		}else {
 			String[] str=getMoteur().Etat_moteur();
 			for(int i=0;i<str.length;i++) {
 				System.out.println(str[i]);
 			}
 			System.out.println("Etat d'huile: "+getMoteur().getQuantite_huile()+"\n");
-			System.out.println("voiture démarée\n");
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
+			return "voiture démarée\n";
 		}
 	}
 	/**

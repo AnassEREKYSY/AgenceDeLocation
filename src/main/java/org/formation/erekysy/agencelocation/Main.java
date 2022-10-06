@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Main {
 
-	public static void main(String[] args) throws VoitureDejaLouerException, HuileInsuffisasntException {
+	public static void main(String[] args) throws VoitureDejaLouerException, HuileInsuffisasntException, AgeBasException {
 		Agence agence=new Agence(new Voiture());
 		Scanner sc=new Scanner(System.in);
 		System.out.println("****---Bonjour et bienvenu dans l'agence de location des voiture---****\n");
@@ -16,9 +16,16 @@ public class Main {
 		String nom=sc.nextLine();
 		System.out.println("Pouvez vous me donner votre age:");
 		int age=sc.nextInt();
-		Client client=new Client(nom,age);
-		agence.acceuillir(client);
-
+		if(age<18) {
+			new AgeBasException();
+			System.out.println("Pouvez vous me donner votre age:");
+			age=sc.nextInt();
+			Client client=new Client(nom,age);
+			agence.acceuillir(client);
+		}else {
+			Client client=new Client(nom,age);
+			agence.acceuillir(client);
+		}
 	}
 
 }
