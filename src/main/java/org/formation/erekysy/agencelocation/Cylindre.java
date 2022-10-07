@@ -10,6 +10,6 @@ public class Cylindre {
 	 * @return String
 	 */
 	public String afficher_etat() {
-		return "démaré";
+		return "démaré";  
 	}
 }
