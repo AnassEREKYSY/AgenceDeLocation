@@ -1,6 +1,6 @@
 package org.formation.erekysy.agencelocation.model;
 /**
- * classe qui gere l'exception des voiture non valable quand le client veut louer
+ * classe qui gere l'exception des voiture non valables quand le client veut louer
  * @author hp
  *
  */

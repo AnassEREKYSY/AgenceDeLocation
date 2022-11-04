@@ -6,20 +6,22 @@ import org.formation.erekysy.agencelocation.model.HuileInsuffisasntException;
 import org.formation.erekysy.agencelocation.model.RendreVoitureAutreAgenceException;
 import org.formation.erekysy.agencelocation.model.Voiture;
 import org.formation.erekysy.agencelocation.model.VoituresDejaLouerException;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.function.*;
-import java.util.stream.Stream;
 
-
+/**
+ * Classe qui represente le controller du projet
+ * @author hp
+ *
+ */
 
 public class Manager {
 	private static Manager instance=new Manager();
 	private ArrayList<Client> clients;
 	private ArrayList<Agence> agences;
 	private ArrayList<Voiture> voitures1,voitures2;
-	
+	/**
+	 * Constructeur de la classe
+	 */
 	private Manager() {
 		clients=new ArrayList<Client>();
 		agences=new ArrayList<Agence>();
@@ -27,6 +29,9 @@ public class Manager {
 		voitures2=new ArrayList<Voiture>();
 		init();	
 	}
+	/**
+	 * methode qui initialise les 3 listes de la classe
+	 */
 	private void init() {
 		voitures1.add(new Voiture("BMW",1)); voitures1.add(new Voiture("Volkswagen",2));
 		voitures1.add(new Voiture("Mercedes",3));
@@ -50,7 +55,10 @@ public class Manager {
 	public static void setInstance(Manager instance) {
 		Manager.instance = instance;
 	}
-	
+	/**
+	 * methode qui fait un appel à la methode acceuil de chaque agence
+	 * @return matrice de String
+	 */
 	public String[][] louer(){
 		String[][] st=new String[clients.size()][1];
 		try {
@@ -70,7 +78,10 @@ public class Manager {
 		
 		return st;
 	}
-	
+	/**
+	 * methode qui fait un appel à la methode rendre de chaque agence
+	 * @return tableau de String
+	 */
 	public String[] rendre(){
 		String[] st=new String[clients.size()];
 		try {
@@ -88,7 +99,10 @@ public class Manager {
 		}catch(RendreVoitureAutreAgenceException e) {}
 		return st;
 	}
-	
+	/**
+	 * methode qui fait un appel à la methode conduire de chaque client
+	 * @return tableau de String
+	 */
 	public String[] conduire(){
 		String[] st=new String[clients.size()];
 		for(int j=0;j<clients.size();j++) {

@@ -37,9 +37,11 @@ public class Client {
 	public void setAlouer(boolean alouer) {
 		this.alouer = alouer;
 	}
+	
 	/**
 	 * methode louer qui fait louer une voiture au client 
-	 * @param v voiture
+	 * @param v Voiture
+	 * @return tableau de String
 	 * @throws HuileInsuffisasntException
 	 */
 	public String[] louer(Voiture v) throws HuileInsuffisasntException {
@@ -49,14 +51,18 @@ public class Client {
 	}
 	/**
 	 * methode rendre qui fait rendre la voiture louer par le client
-	 * @throws RendreVoitureAutreAgenceException 
+	 * @param a Agence
+	 * @throws RendreVoitureAutreAgenceException
 	 */
 	public void rendre(Agence a) throws RendreVoitureAutreAgenceException {
 		setAlouer(false);
 		a.rendre(getNom());
 		
 	}
-	
+	/**
+	 * methode conduire qui retourne un String
+	 * @return String
+	 */
 	public String conduire() {
 		return " Je conduit la voiture que j'ai loué !!";
 	}

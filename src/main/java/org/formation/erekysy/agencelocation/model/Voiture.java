@@ -27,56 +27,7 @@ public class Voiture {
 		this.setNumero_serie(num);
 		this.isValable=true;
 	}
-	/**
-	 * methode demarer fait demarer le moteur de la voiture en afficheant l'etat des cylindres 
-	 * et en testant si l'huile est suffisant ou pas
-	 * @throws HuileInsuffisasntException
-	 */
-	/*public String demarer() throws HuileInsuffisasntException{
-		if(getMoteur().getQuantite_huile()==0) {
-			new HuileInsuffisasntException();
-			Scanner sc=new Scanner(System.in);
-			int a=0;
-			while(a!=1) {
-				System.out.println("Taper 1 pour changer l'huile:");
-				a=sc.nextInt();
-			} 
-			getMoteur().setQuantite_huile(5);
-			System.out.println("Huile changé avec succée!!\n");
-			String[] str=getMoteur().lancer();
-			for(int i=0;i<str.length;i++) {
-				System.out.println(str[i]); 
-			}
-			System.out.println("Etat d'huile: "+getMoteur().getQuantite_huile()+"\n");
-			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
-			return "voiture démarée\n";
-		}else {
-			String[] str=getMoteur().lancer();
-			for(int i=0;i<str.length;i++) {
-				System.out.println(str[i]);
-			}
-			System.out.println("Etat d'huile: "+getMoteur().getQuantite_huile()+"\n");
-			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
-			return "voiture démarée\n";
-		}
-	}*/
-	public String[] demarer() {
-		if(getMoteur().getQuantite_huile()==0) {
-			getMoteur().setQuantite_huile(5);
-			//throw new HuileInsuffisasntException();
-		}
-		getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
-		return getMoteur().lancer();
-	}
 	
-	/**
-	 * methode ouvrir le capot qui returne l'etat du moteur de la voiture
-	 * @return
-	 */
-	public Moteur ouvrir_capot() {
-		return getMoteur();
-	}
-
 	public Moteur getMoteur() {
 		return moteur;
 	}
@@ -102,5 +53,29 @@ public class Voiture {
 	}
 	public void setNumero_serie(double numero_serie) {
 		this.numero_serie = numero_serie;
+	}
+	
+	
+	
+	/**
+	 *  methode demarer fait demarer le moteur de la voiture 
+	 * et en testant si l'huile est suffisant ou pas
+	 * @return tableau de String
+	 */
+	public String[] demarer() {
+		if(getMoteur().getQuantite_huile()==0) {
+			getMoteur().setQuantite_huile(5);
+			//throw new HuileInsuffisasntException();
+		}
+		getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
+		return getMoteur().lancer();
+	}
+	
+	/**
+	 * methode ouvrir le capot qui returne l'etat du moteur de la voiture
+	 * @return
+	 */
+	public Moteur ouvrir_capot() {
+		return getMoteur();
 	}
 }

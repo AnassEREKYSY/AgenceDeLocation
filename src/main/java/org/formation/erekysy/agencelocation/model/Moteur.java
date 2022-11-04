@@ -17,6 +17,9 @@ public class Moteur {
 		this.cylindre=new ArrayList<Cylindre>();
 		init();
 	}
+	/**
+	 * methode qui initialise les cylindres du moteur
+	 */
 	public void init() {
 		for(int i=0;i<12;i++) {
 			cylindre.add(i, new Cylindre());
@@ -46,16 +49,6 @@ public class Moteur {
 		}	
 		return str;
 	}
-	
-	/**
-	 * methode changer_huile fait changer l'huile du moteur
-	 * @return true
-	 */
-	/*public boolean changer_huile() {
-		setQuantite_huile(5);
-		System.out.println("Huile changé avec succée!!\n");
-		return true;
-	}*/
 	
 	/**
 	 * methode changer cylindre fait changer le nombre de cylindre du moteur
