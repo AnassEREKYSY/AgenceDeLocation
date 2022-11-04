@@ -1,6 +1,6 @@
 package org.formation.erekysy.agencelocation.tests;
 
-import org.formation.erekysy.agencelocation.Cylindre;
+import org.formation.erekysy.agencelocation.model.Cylindre;
 import org.junit.Test;
 
 import junit.framework.TestCase;

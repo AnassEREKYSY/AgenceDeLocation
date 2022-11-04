@@ -1,8 +1,8 @@
 package org.formation.erekysy.agencelocation.tests;
 
-import org.formation.erekysy.agencelocation.HuileInsuffisasntException;
-import org.formation.erekysy.agencelocation.Moteur;
-import org.formation.erekysy.agencelocation.Voiture;
+import org.formation.erekysy.agencelocation.model.HuileInsuffisasntException;
+import org.formation.erekysy.agencelocation.model.Moteur;
+import org.formation.erekysy.agencelocation.model.Voiture;
 import org.junit.Test;
 
 import junit.framework.TestCase;

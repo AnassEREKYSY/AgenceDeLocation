@@ -1,6 +1,6 @@
 package org.formation.erekysy.agencelocation.tests;
 
-import org.formation.erekysy.agencelocation.Client;
+import org.formation.erekysy.agencelocation.model.Client;
 import org.junit.Test;
 
 import junit.framework.TestCase;

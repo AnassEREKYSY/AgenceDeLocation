@@ -1,4 +1,4 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
 /**
  * Classe qui represente l'exception du huile insuffisant
  * @author hp

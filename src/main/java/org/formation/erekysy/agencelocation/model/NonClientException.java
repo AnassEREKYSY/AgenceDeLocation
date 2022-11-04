@@ -1,4 +1,4 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
 /**
  * Classe qui traite l'exception du client qui veut ouvrir le capot d'une voiture qui n'a pas loué
  * @author hp

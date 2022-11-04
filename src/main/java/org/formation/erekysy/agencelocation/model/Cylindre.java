@@ -1,4 +1,4 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
 /**
  * Classe Cylindre represente la definition d'un cylindre
  * @author hp

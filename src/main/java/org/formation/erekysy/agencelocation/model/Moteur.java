@@ -1,4 +1,4 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
 
 import java.util.ArrayList;
 /**
@@ -15,6 +15,12 @@ public class Moteur {
 	 */
 	public Moteur() {
 		this.cylindre=new ArrayList<Cylindre>();
+		init();
+	}
+	public void init() {
+		for(int i=0;i<12;i++) {
+			cylindre.add(i, new Cylindre());
+		}
 	}
 	public int getQuantite_huile() {
 		return quantite_huile;
@@ -27,10 +33,16 @@ public class Moteur {
 	 * methode qui affiche l'etat du moteur et l'etat de ses cylindres
 	 * @return tableau de String
 	 */
-	public String[] Etat_moteur() {
-		String[] str=new String[cylindre.size()];
-		for(int i=0;i<str.length;i++) {
-			str[i]= "cylindre n° "+(i+1)+" "+cylindre.get(i).afficher_etat();
+	public String[] lancer() {
+		String[] str=new String[cylindre.size()+1];
+		str[0]="---voiture démarée---\n";
+		for(int i=1,j=0;i<str.length;i++,j++) {
+			if(j%3==0) {
+				str[i]= "\n\t---cylindre n° "+(i)+" "+cylindre.get(j).afficher_etat()+"---";
+			}
+			else {
+				str[i]= "\t---cylindre n° "+(i)+" "+cylindre.get(j).afficher_etat()+"---";
+			}
 		}	
 		return str;
 	}
@@ -39,11 +51,11 @@ public class Moteur {
 	 * methode changer_huile fait changer l'huile du moteur
 	 * @return true
 	 */
-	public boolean changer_huile() {
+	/*public boolean changer_huile() {
 		setQuantite_huile(5);
 		System.out.println("Huile changé avec succée!!\n");
 		return true;
-	}
+	}*/
 	
 	/**
 	 * methode changer cylindre fait changer le nombre de cylindre du moteur

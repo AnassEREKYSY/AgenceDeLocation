@@ -1,4 +1,4 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
 
 public class AgeBasException extends Exception{
 	public AgeBasException() {

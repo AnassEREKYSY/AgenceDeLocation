@@ -1,6 +1,5 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
 
-import java.util.Scanner;
 /**
  * classe Voiture represente la definition d'une voiture
  * @author hp
@@ -8,6 +7,8 @@ import java.util.Scanner;
  */
 public class Voiture {
 	
+	private String marque;
+	private double numero_serie;
 	private Moteur moteur;
 	private boolean isValable=true; 
 
@@ -16,14 +17,22 @@ public class Voiture {
 	 */
 	public Voiture() {
 		this.setMoteur(new Moteur());
-		
+		this.setMarque("marque");
+		this.setNumero_serie(0);
+		this.isValable=true;
+	}
+	public Voiture(String marque,double num) {
+		this.setMoteur(new Moteur());
+		this.setMarque(marque);
+		this.setNumero_serie(num);
+		this.isValable=true;
 	}
 	/**
 	 * methode demarer fait demarer le moteur de la voiture en afficheant l'etat des cylindres 
 	 * et en testant si l'huile est suffisant ou pas
 	 * @throws HuileInsuffisasntException
 	 */
-	public String demarer() throws HuileInsuffisasntException{
+	/*public String demarer() throws HuileInsuffisasntException{
 		if(getMoteur().getQuantite_huile()==0) {
 			new HuileInsuffisasntException();
 			Scanner sc=new Scanner(System.in);
@@ -32,11 +41,9 @@ public class Voiture {
 				System.out.println("Taper 1 pour changer l'huile:");
 				a=sc.nextInt();
 			} 
-			boolean b=getMoteur().changer_huile();
-			if(b) {
-				System.out.println("Huile changé avec succée!!\n");
-			}
-			String[] str=getMoteur().Etat_moteur();
+			getMoteur().setQuantite_huile(5);
+			System.out.println("Huile changé avec succée!!\n");
+			String[] str=getMoteur().lancer();
 			for(int i=0;i<str.length;i++) {
 				System.out.println(str[i]); 
 			}
@@ -44,7 +51,7 @@ public class Voiture {
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
 			return "voiture démarée\n";
 		}else {
-			String[] str=getMoteur().Etat_moteur();
+			String[] str=getMoteur().lancer();
 			for(int i=0;i<str.length;i++) {
 				System.out.println(str[i]);
 			}
@@ -52,7 +59,16 @@ public class Voiture {
 			getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
 			return "voiture démarée\n";
 		}
+	}*/
+	public String[] demarer() {
+		if(getMoteur().getQuantite_huile()==0) {
+			getMoteur().setQuantite_huile(5);
+			//throw new HuileInsuffisasntException();
+		}
+		getMoteur().setQuantite_huile(getMoteur().getQuantite_huile()-1);
+		return getMoteur().lancer();
 	}
+	
 	/**
 	 * methode ouvrir le capot qui returne l'etat du moteur de la voiture
 	 * @return
@@ -74,5 +90,17 @@ public class Voiture {
 	}
 	public void setValable(boolean isValable) {
 		this.isValable = isValable;
+	}
+	public String getMarque() {
+		return marque;
+	}
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+	public double getNumero_serie() {
+		return numero_serie;
+	}
+	public void setNumero_serie(double numero_serie) {
+		this.numero_serie = numero_serie;
 	}
 }

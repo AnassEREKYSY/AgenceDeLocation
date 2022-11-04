@@ -1,4 +1,5 @@
-package org.formation.erekysy.agencelocation;
+package org.formation.erekysy.agencelocation.model;
+
 /**
  * La classe client contient la definition du client
  * @author hp
@@ -6,7 +7,7 @@ package org.formation.erekysy.agencelocation;
  */
 public class Client {
 	private int age;
-	private String nom,prenom;
+	private String nom;
 	private boolean alouer=false;
 	
 	/**
@@ -16,7 +17,6 @@ public class Client {
 	 */
 	public Client(String n, int a) {
 		setNom(n);
-		setPrenom("xxx");
 		setAge(a);
 	}
 	public int getAge() {
@@ -31,12 +31,6 @@ public class Client {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom; 
-	}
 	public boolean getAlouer() {
 		return alouer;
 	}
@@ -48,16 +42,22 @@ public class Client {
 	 * @param v voiture
 	 * @throws HuileInsuffisasntException
 	 */
-	public void louer(Voiture v) throws HuileInsuffisasntException {
-		String s=v.demarer();
-		System.out.println(s);
+	public String[] louer(Voiture v) throws HuileInsuffisasntException {
 		v.setValable(false);
 		setAlouer(true);
+		return v.demarer();
 	}
 	/**
-	 * methode rendre qui fait rendre la voiture louer par l client
+	 * methode rendre qui fait rendre la voiture louer par le client
+	 * @throws RendreVoitureAutreAgenceException 
 	 */
-	public void rendre() {
+	public void rendre(Agence a) throws RendreVoitureAutreAgenceException {
 		setAlouer(false);
+		a.rendre(getNom());
+		
+	}
+	
+	public String conduire() {
+		return " Je conduit la voiture que j'ai loué !!";
 	}
 }
