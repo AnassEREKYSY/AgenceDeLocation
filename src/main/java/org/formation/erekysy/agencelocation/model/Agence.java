@@ -1,5 +1,6 @@
 package org.formation.erekysy.agencelocation.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -9,7 +10,11 @@ import java.util.Set;
  * @author hp
  *
  */
-public class Agence {
+public class Agence implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nom;
 	private ArrayList<Voiture> voiture;
 	private HashMap<String,Voiture> hm=new HashMap<String,Voiture>();

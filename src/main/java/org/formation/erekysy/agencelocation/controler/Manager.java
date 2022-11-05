@@ -7,6 +7,12 @@ import org.formation.erekysy.agencelocation.model.RendreVoitureAutreAgenceExcept
 import org.formation.erekysy.agencelocation.model.Voiture;
 import org.formation.erekysy.agencelocation.model.VoituresDejaLouerException;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.*;
 
 /**
  * Classe qui represente le controller du projet
@@ -30,7 +36,7 @@ public class Manager {
 		init();	
 	}
 	/**
-	 * methode qui initialise les 3 listes de la classe
+	 * methode qui initialise les 3 listes de la classe 
 	 */
 	private void init() {
 		voitures1.add(new Voiture("BMW",1)); voitures1.add(new Voiture("Volkswagen",2));
@@ -45,8 +51,29 @@ public class Manager {
 		for(int i=0;i<4;i++) {
 			clients.add(new Client("c"+(i+1),(18+(i+1))));
 		}
+		save();
 	}
-	
+	/**
+	 * methode qui permet d'enregistrer les objets dans un fichier (agencelocation.txt)
+	 */
+	public void save() {
+		
+		Path p=Paths.get("C:\\Users\\hp\\Documents\\java\\agencelocation\\agencelocation.txt");
+		try(OutputStream os=Files.newOutputStream(p)){
+			ObjectOutputStream oos=new ObjectOutputStream(os);
+			for(int i=0;i<clients.size();i++) {
+				oos.writeObject(clients.get(i));
+			}
+			for(int i=0;i<agences.size();i++) {
+				oos.writeObject(agences.get(i));
+			}
+			for(int i=0;i<3;i++) {
+				oos.writeObject(voitures1.get(i));
+				oos.writeObject(voitures2.get(i));
+			}
+			
+		}catch(IOException e) {e.getMessage();}
+	}
 	
 	
 	public static Manager getInstance() {

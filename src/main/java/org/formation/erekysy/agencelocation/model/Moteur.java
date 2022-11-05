@@ -1,12 +1,17 @@
 package org.formation.erekysy.agencelocation.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * classe Moteur represente la definition d'un moteur
  * @author hp
  *
  */
-public class Moteur {
+public class Moteur implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Cylindre> cylindre;
 	private static int quantite_huile=5;
 	

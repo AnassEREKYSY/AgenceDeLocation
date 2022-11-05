@@ -41,7 +41,7 @@
  * class View{
  * 		+louer():void
  * 		+rendre():void
- * 		+ conduire():void
+ * 		+ conduire():void 
  * }
  * Moteur "1" --o Voiture 
  * Cylindre "2..12" --* Moteur

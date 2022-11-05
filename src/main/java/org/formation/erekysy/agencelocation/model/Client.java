@@ -1,11 +1,17 @@
 package org.formation.erekysy.agencelocation.model;
 
+import java.io.Serializable;
+
 /**
  * La classe client contient la definition du client
  * @author hp
  *
  */
-public class Client {
+public class Client implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int age;
 	private String nom;
 	private boolean alouer=false;

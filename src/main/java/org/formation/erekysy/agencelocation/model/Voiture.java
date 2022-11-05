@@ -1,12 +1,18 @@
 package org.formation.erekysy.agencelocation.model;
 
+import java.io.Serializable;
+
 /**
  * classe Voiture represente la definition d'une voiture
  * @author hp
  *
  */
-public class Voiture {
+public class Voiture implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String marque;
 	private double numero_serie;
 	private Moteur moteur;
