@@ -1,8 +1,13 @@
 package org.formation.erekysy.agencelocation.view;
 
+import java.util.ArrayList;
+
 import org.formation.erekysy.agencelocation.controler.Manager;
+import org.formation.erekysy.agencelocation.model.Agence;
+import org.formation.erekysy.agencelocation.model.Client;
 import org.formation.erekysy.agencelocation.model.HuileInsuffisasntException;
 import org.formation.erekysy.agencelocation.model.RendreVoitureAutreAgenceException;
+import org.formation.erekysy.agencelocation.model.Voiture;
 import org.formation.erekysy.agencelocation.model.VoituresDejaLouerException;
 /**
  * classe qui represente le vue du projet
@@ -48,6 +53,20 @@ public class View {
 		String[] st=Manager.getInstance().conduire();
 		for(int i=0;i<st.length;i++) {
 			System.out.println(st[i].toString());
+		}
+	}
+	
+	public void read() throws ClassNotFoundException {
+		ArrayList<Object> obj=Manager.getInstance().read();
+		for(int i=0;i<obj.size();i++) {
+			if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Voiture")==0) {
+				System.out.println(((Voiture)obj.get(i)).toString());
+			}else if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Client")==0) {
+				System.out.println(((Client)obj.get(i)).toString());
+			}else {
+				System.out.println(((Agence)obj.get(i)).toString());
+			}
+			//System.out.println(obj.get(i).toString());
 		}
 	}
 

@@ -72,4 +72,10 @@ public class Client implements Serializable {
 	public String conduire() {
 		return " Je conduit la voiture que j'ai loué !!";
 	}
+	@Override
+	public String toString() {
+		return "Client [age=" + age + ", nom=" + nom + ", alouer=" + alouer + "]";
+	}
+	
+	
 }

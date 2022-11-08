@@ -26,18 +26,22 @@ public class Main {
 	 * @throws HuileInsuffisasntException
 	 * @throws VoituresDejaLouerException
 	 * @throws RendreVoitureAutreAgenceException
+	 * @throws ClassNotFoundException 
 	 */
-	public void go() throws HuileInsuffisasntException, VoituresDejaLouerException, RendreVoitureAutreAgenceException {
+	public void go() throws HuileInsuffisasntException, VoituresDejaLouerException, RendreVoitureAutreAgenceException, ClassNotFoundException {
 		
 		view.louer();
 		System.out.println("\n----------------la location est faite----------------\n");
 		view.conduire();
-		System.out.println("\\n----------------les clients conduisent les voitures----------------\\n");
+		System.out.println("\n----------------les clients conduisent les voitures----------------\n");
 		view.rendre();
-		System.out.println("\\n----------------les clients ont rendu les voitures louées----------------\\n");
+		System.out.println("\n----------------les clients ont rendu les voitures louées----------------\n");
+		System.out.println("\n");
+		System.out.println("\n----------------liste des objets suavgarder dans agencelocation.txt----------------\n");
+		view.read();
 		
 	}
-	public static void main(String[] args) throws VoituresDejaLouerException, HuileInsuffisasntException, RendreVoitureAutreAgenceException {
+	public static void main(String[] args) throws VoituresDejaLouerException, HuileInsuffisasntException, RendreVoitureAutreAgenceException, ClassNotFoundException {
 				
 		Main m=new Main();
 		m.go();

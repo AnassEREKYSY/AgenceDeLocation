@@ -102,5 +102,12 @@ public class Agence implements Serializable{
 		}
 		return str;
 	}
+
+	@Override
+	public String toString() {
+		return "Agence [nom=" + nom + "]";
+	}
+	
+	
 	
 }

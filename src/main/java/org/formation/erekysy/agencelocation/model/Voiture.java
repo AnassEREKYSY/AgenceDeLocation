@@ -84,4 +84,11 @@ public class Voiture implements Serializable{
 	public Moteur ouvrir_capot() {
 		return getMoteur();
 	}
+	@Override
+	public String toString() {
+		return "Voiture [marque=" + marque + ", numero_serie=" + numero_serie + ", moteur=" + moteur + ", isValable="
+				+ isValable + "]";
+	}
+	
+	
 }

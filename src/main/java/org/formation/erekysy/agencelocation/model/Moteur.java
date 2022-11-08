@@ -71,4 +71,9 @@ public class Moteur implements Serializable{
 			}
 		}
 	}
+	@Override
+	public String toString() {
+		return "cylindre(" + cylindre.size()+")" ;
+	}
+	
 }

@@ -76,6 +76,25 @@ public class Manager {
 	}
 	
 	
+	/**
+	 * methode qui lit le contenu du file agencelocation.txt
+	 * @throws ClassNotFoundException 
+	 * @return ArrayList<Object>
+	 */
+	
+	public ArrayList<Object> read() throws ClassNotFoundException {
+		ArrayList<Object> obj=new ArrayList<Object>();
+		Path p=Paths.get("C:\\Users\\hp\\Documents\\java\\agencelocation\\agencelocation.txt");
+		try(InputStream is=Files.newInputStream(p)){
+			ObjectInputStream ois=new ObjectInputStream(is);
+			
+			while(ois.available()>=0) {
+				obj.add(ois.readObject());
+			}
+		}catch(IOException e) {e.getMessage();}
+		return obj;
+	}
+	
 	public static Manager getInstance() {
 		return instance;
 	}
