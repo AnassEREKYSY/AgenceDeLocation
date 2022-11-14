@@ -1,6 +1,6 @@
 /**
  * 
- * @startuml
+ * @startuml 
  * class  Client{ 
  * 		-age:int 
  * 		-nom:String

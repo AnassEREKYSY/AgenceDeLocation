@@ -29,15 +29,22 @@ public class Main {
 	 * @throws ClassNotFoundException 
 	 */
 	public void go() throws HuileInsuffisasntException, VoituresDejaLouerException, RendreVoitureAutreAgenceException, ClassNotFoundException {
+		System.out.println("\t\t\t\t ********Agence de location******** \n");
 		
+		System.out.println("\n\t\t\t----------------la location des voitures----------------\n");
 		view.louer();
-		System.out.println("\n----------------la location est faite----------------\n");
+		System.out.println("\n\t\t\t----------------la location est faite----------------\n");
+		System.out.println("\t\t------------les données sont sauvgardées dans un fichier------------\n");
+		
+		System.out.println("\n\t\t\t----------------Conduction des voitures----------------\n");
 		view.conduire();
-		System.out.println("\n----------------les clients conduisent les voitures----------------\n");
+		System.out.println("\n\t\t\t------------les clients conduisent les voitures------------\n");
+		
+		System.out.println("\n\t\t\t----------------le rend des voitures louées----------------\n");
 		view.rendre();
-		System.out.println("\n----------------les clients ont rendu les voitures louées----------------\n");
+		System.out.println("\n\t\t\t----------les clients ont rendu les voitures louées---------\n");
 		System.out.println("\n");
-		System.out.println("\n----------------liste des objets suavgarder dans agencelocation.txt----------------\n");
+		System.out.println("\n\t\t----------liste des objets suavgarder dans agencelocation.txt------------\n");
 		view.read();
 		
 	}
