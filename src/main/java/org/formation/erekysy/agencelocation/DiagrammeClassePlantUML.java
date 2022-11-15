@@ -62,7 +62,7 @@
  * Manager *-- Agence
  * Manager *-- Voiture
  * Manager *-- Camion
- * Manager *-- Client
+ * Manager *-- Client 
  * 
  * 
  
