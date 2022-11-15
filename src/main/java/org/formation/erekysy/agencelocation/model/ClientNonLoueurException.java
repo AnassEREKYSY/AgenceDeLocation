@@ -7,7 +7,7 @@ package org.formation.erekysy.agencelocation.model;
 public class ClientNonLoueurException extends Exception{
 
 	public ClientNonLoueurException() {
-		System.out.println("vous n avez rien a nous rendre par ce que vous n'avez pas louer une voiture");
+		System.out.println("vous n avez rien a nous rendre par ce que vous n'avez pas louer une vehicule");
 	}
 
 }

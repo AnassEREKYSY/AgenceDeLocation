@@ -17,12 +17,20 @@
  * 		+rendre(String):String
  * }
  * class Voiture{ 
+ * 		
+ * }
+ * class Camion{ 
+ * 		
+ * }
+ * class Vehicule{
  * 		-marque : String
  * 		-numero_serie:double
  * 		-moteur:Moteur
  * 		-isValable:boolean
  * 		+demarer():String[]
  * 		+ouvrir_capot():Moteur
+ * 		+toString():String
+ * 
  * }
  * class Cylindre{
  * 		+afficher_etat():String
@@ -43,19 +51,22 @@
  * 		+rendre():void
  * 		+ conduire():void 
  * }
- * Moteur "1" --o Voiture 
+ * Vehicule <|-- Voiture
+ * Vehicule <|-- Camion
+ * Moteur "1" --o Vehicule 
  * Cylindre "2..12" --* Moteur
- * Agence o-- "1..*" Voiture :contenir
+ * Agence o-- "1..*" Vehicule :contenir
  * Client "1" -- "1" Agence :acceuillir
- * Client "0..1" -- "0..1" Voiture : louer
+ * Client "0..1" -- "0..1" Vehicule : louer
  * View ..> Manager
  * Manager *-- Agence
  * Manager *-- Voiture
+ * Manager *-- Camion
  * Manager *-- Client
  * 
  * 
  
-
+ 
 	@enduml
 
  */
@@ -65,11 +76,6 @@
 
 package org.formation.erekysy.agencelocation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.formation.erekysy.agencelocation.model.Cylindre;
-import org.formation.erekysy.agencelocation.model.Voiture;
 
 public class DiagrammeClassePlantUML {
 

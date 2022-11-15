@@ -2,8 +2,8 @@ package org.formation.erekysy.agencelocation;
 
 
 import org.formation.erekysy.agencelocation.model.HuileInsuffisasntException;
-import org.formation.erekysy.agencelocation.model.RendreVoitureAutreAgenceException;
-import org.formation.erekysy.agencelocation.model.VoituresDejaLouerException;
+import org.formation.erekysy.agencelocation.model.RendreVehiculeAutreAgenceException;
+import org.formation.erekysy.agencelocation.model.VehiculesDejaLouerException;
 import org.formation.erekysy.agencelocation.view.View;
 /**
  * La classe main qui contient la methode main qui fait tourner le programme
@@ -24,11 +24,11 @@ public class Main {
 	/**
 	 * methode qui appelle les methode du view
 	 * @throws HuileInsuffisasntException
-	 * @throws VoituresDejaLouerException
-	 * @throws RendreVoitureAutreAgenceException
+	 * @throws VehiculesDejaLouerException
+	 * @throws RendreVehiculeAutreAgenceException
 	 * @throws ClassNotFoundException 
 	 */
-	public void go() throws HuileInsuffisasntException, VoituresDejaLouerException, RendreVoitureAutreAgenceException, ClassNotFoundException {
+	public void go() throws HuileInsuffisasntException, VehiculesDejaLouerException, RendreVehiculeAutreAgenceException, ClassNotFoundException {
 		System.out.println("\t\t\t\t ********Agence de location******** \n");
 		
 		System.out.println("\n\t\t\t----------------la location des voitures----------------\n");
@@ -44,11 +44,12 @@ public class Main {
 		view.rendre();
 		System.out.println("\n\t\t\t----------les clients ont rendu les voitures louées---------\n");
 		System.out.println("\n");
+		System.out.println("\t\t\t*************************Historique*************************");
 		System.out.println("\n\t\t----------liste des objets suavgarder dans agencelocation.txt------------\n");
 		view.read();
 		
 	}
-	public static void main(String[] args) throws VoituresDejaLouerException, HuileInsuffisasntException, RendreVoitureAutreAgenceException, ClassNotFoundException {
+	public static void main(String[] args) throws VehiculesDejaLouerException, HuileInsuffisasntException, RendreVehiculeAutreAgenceException, ClassNotFoundException {
 				
 		Main m=new Main();
 		m.go();

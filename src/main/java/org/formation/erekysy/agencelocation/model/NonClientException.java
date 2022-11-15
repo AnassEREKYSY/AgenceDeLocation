@@ -6,7 +6,7 @@ package org.formation.erekysy.agencelocation.model;
  */
 public class NonClientException extends Exception{
 	public NonClientException() {
-		System.out.println("Attention!! Pour ouvrir le capot de la voiture il faut que tu la loue");
+		System.out.println("Attention!! Pour ouvrir le capot de la vehicule il faut que tu la loue");
 	}
 
 }

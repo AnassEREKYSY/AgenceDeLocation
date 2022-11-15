@@ -21,7 +21,7 @@ public class TestClient extends TestCase {
 
 	public void testConduire() {
 		Client c=new Client("xxx",18);
-		assertEquals(c.conduire()," Je conduit la voiture que j'ai loué !!");
+		assertEquals(c.conduire()," Je conduit "+c.getCe_que_jai_loue()+" que j'ai loué !!");
 	}
 
 }

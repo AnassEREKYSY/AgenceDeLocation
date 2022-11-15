@@ -43,7 +43,7 @@ public class Moteur implements Serializable{
 	 */
 	public String[] lancer() {
 		String[] str=new String[cylindre.size()+1];
-		str[0]="---voiture démarée---\n";
+		str[0]="---Moteur démarée---\n";
 		for(int i=1,j=0;i<str.length;i++,j++) {
 			if(j%3==0) {
 				str[i]= "\n\t---cylindre n° "+(i)+" "+cylindre.get(j).afficher_etat()+"---";

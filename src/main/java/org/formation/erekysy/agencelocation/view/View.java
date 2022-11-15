@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import org.formation.erekysy.agencelocation.controler.Manager;
 import org.formation.erekysy.agencelocation.model.Agence;
+import org.formation.erekysy.agencelocation.model.Camion;
 import org.formation.erekysy.agencelocation.model.Client;
 import org.formation.erekysy.agencelocation.model.HuileInsuffisasntException;
-import org.formation.erekysy.agencelocation.model.RendreVoitureAutreAgenceException;
+import org.formation.erekysy.agencelocation.model.RendreVehiculeAutreAgenceException;
 import org.formation.erekysy.agencelocation.model.Voiture;
-import org.formation.erekysy.agencelocation.model.VoituresDejaLouerException;
+import org.formation.erekysy.agencelocation.model.VehiculesDejaLouerException;
 /**
  * classe qui represente le vue du projet
  * @author hp
@@ -25,9 +26,9 @@ public class View {
 	/**
 	 * methode qui appelle la methode louer du controller
 	 * @throws HuileInsuffisasntException
-	 * @throws VoituresDejaLouerException
+	 * @throws VehiculesDejaLouerException
 	 */
-	public void louer() throws HuileInsuffisasntException, VoituresDejaLouerException {
+	public void louer() throws HuileInsuffisasntException, VehiculesDejaLouerException {
 		String[][] st=Manager.getInstance().louer();
 		for(int i=0;i<st.length;i++) {
 			for(int j=0;j<st[i].length;j++) {
@@ -38,9 +39,9 @@ public class View {
 	}
 	/**
 	 * methode qui appelle la methode rendre du controller
-	 * @throws RendreVoitureAutreAgenceException
+	 * @throws RendreVehiculeAutreAgenceException
 	 */
-	public void rendre() throws RendreVoitureAutreAgenceException {
+	public void rendre() throws RendreVehiculeAutreAgenceException {
 		String[] st=Manager.getInstance().rendre();
 		for(int i=0;i<st.length;i++) {
 			System.out.println(st[i].toString());
@@ -61,10 +62,13 @@ public class View {
 		for(int i=0;i<obj.size();i++) {
 			if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Voiture")==0) {
 				System.out.println(((Voiture)obj.get(i)).toString());
-			}else if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Client")==0) {
+			}else if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Camion")==0) {
+				System.out.println(((Camion)obj.get(i)).toString());
+			}
+			else if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Client")==0) {
 				System.out.println(((Client)obj.get(i)).toString());
 			}else {
-				System.out.println(((Agence)obj.get(i)).toString());
+				System.out.println(((Agence<?>)obj.get(i)).toString());
 			}
 			//System.out.println(obj.get(i).toString());
 		}

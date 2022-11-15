@@ -15,6 +15,7 @@ public class Client implements Serializable {
 	private int age;
 	private String nom;
 	private boolean alouer=false;
+	private String ce_que_jai_loue;
 	
 	/**
 	 * Constructeur de la classe Client
@@ -43,24 +44,35 @@ public class Client implements Serializable {
 	public void setAlouer(boolean alouer) {
 		this.alouer = alouer;
 	}
+	public String getCe_que_jai_loue() {
+		return ce_que_jai_loue;
+	}
+	public void setCe_que_jai_loue(String ce_que_jai_loue) {
+		this.ce_que_jai_loue = ce_que_jai_loue;
+	}
 	
 	/**
-	 * methode louer qui fait louer une voiture au client 
+	 * methode louer qui fait louer une vehicule au client 
 	 * @param v Voiture
 	 * @return tableau de String
 	 * @throws HuileInsuffisasntException
 	 */
-	public String[] louer(Voiture v) throws HuileInsuffisasntException {
+	public String[] louer(Vehicule v) throws HuileInsuffisasntException {
+		if(v instanceof Voiture ) {
+			setCe_que_jai_loue("la voiture");
+		}else {
+			setCe_que_jai_loue("le camion");
+		}
 		v.setValable(false);
 		setAlouer(true);
 		return v.demarer();
 	}
 	/**
-	 * methode rendre qui fait rendre la voiture louer par le client
+	 * methode rendre qui fait rendre la vehicule louer par le client
 	 * @param a Agence
-	 * @throws RendreVoitureAutreAgenceException
+	 * @throws RendreVehiculeAutreAgenceException
 	 */
-	public void rendre(Agence a) throws RendreVoitureAutreAgenceException {
+	public void rendre(Agence<?> a) throws RendreVehiculeAutreAgenceException {
 		setAlouer(false);
 		a.rendre(getNom());
 		
@@ -70,7 +82,7 @@ public class Client implements Serializable {
 	 * @return String
 	 */
 	public String conduire() {
-		return " Je conduit la voiture que j'ai loué !!";
+		return " Je conduit "+getCe_que_jai_loue()+" que j'ai loué !!";
 	}
 	@Override
 	public String toString() {

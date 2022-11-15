@@ -1,14 +1,14 @@
 package org.formation.erekysy.agencelocation.controler;
 
 import org.formation.erekysy.agencelocation.model.Agence;
+import org.formation.erekysy.agencelocation.model.Camion;
 import org.formation.erekysy.agencelocation.model.Client;
 import org.formation.erekysy.agencelocation.model.HuileInsuffisasntException;
-import org.formation.erekysy.agencelocation.model.RendreVoitureAutreAgenceException;
+import org.formation.erekysy.agencelocation.model.RendreVehiculeAutreAgenceException;
 import org.formation.erekysy.agencelocation.model.Voiture;
-import org.formation.erekysy.agencelocation.model.VoituresDejaLouerException;
+import org.formation.erekysy.agencelocation.model.VehiculesDejaLouerException;
 import java.util.ArrayList;
 import java.io.IOException;
-import java.nio.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,54 +24,55 @@ public class Manager {
 	private static Manager instance=new Manager();
 	private ArrayList<Client> clients;
 	private ArrayList<Agence> agences;
-	private ArrayList<Voiture> voitures1,voitures2;
+	private ArrayList<Voiture> vehicule1;
+	private ArrayList<Camion> vehicule2;
 	/**
 	 * Constructeur de la classe
 	 */
 	private Manager() {
 		clients=new ArrayList<Client>();
 		agences=new ArrayList<Agence>();
-		voitures1=new ArrayList<Voiture>();
-		voitures2=new ArrayList<Voiture>();
+		vehicule1=new ArrayList<Voiture>();
+		vehicule2=new ArrayList<Camion>();
 		init();	
 	}
 	/**
 	 * methode qui initialise les 3 listes de la classe 
 	 */
 	private void init() {
-		voitures1.add(new Voiture("BMW",1)); voitures1.add(new Voiture("Volkswagen",2));
-		voitures1.add(new Voiture("Mercedes",3));
+		vehicule1.add(new Voiture("BMW",1)); vehicule1.add(new Voiture("Volkswagen",2));
+		vehicule1.add(new Voiture("Mercedes",3));
 		
-		voitures2.add(new Voiture("Jeep",4)); voitures2.add(new Voiture("Ferrari",5));
-		voitures2.add(new Voiture("Rolls-Royce",6));
+		vehicule2.add(new Camion("MAN",4)); vehicule2.add(new Camion("VOLVO",5));
+		vehicule2.add(new Camion("Scania",6));
 	
-		agences.add(new Agence("agence1",voitures1));
-		agences.add(new Agence("agence2",voitures2));
+		agences.add(new Agence<Voiture>("agence1",vehicule1));
+		agences.add(new Agence<Camion>("agence2",vehicule2));
+		for(int i=0;i<agences.size();i++) {
+			save(agences.get(i));
+		}
 		
 		for(int i=0;i<4;i++) {
 			clients.add(new Client("c"+(i+1),(18+(i+1))));
 		}
-		save();
 	}
+	
+	public static Manager getInstance() {
+		return instance;
+	}
+	public static void setInstance(Manager instance) {
+		Manager.instance = instance;
+	}
+	
 	/**
-	 * methode qui permet d'enregistrer les objets dans un fichier (agencelocation.txt)
+	 * methode qui permet d'enregistrer un objet passé par ses parametres dans un fichier (agencelocation.txt)
 	 */
-	public void save() {
+	public void save(Object obj) {
 		
 		Path p=Paths.get("C:\\Users\\hp\\Documents\\java\\agencelocation\\agencelocation.txt");
 		try(OutputStream os=Files.newOutputStream(p)){
 			ObjectOutputStream oos=new ObjectOutputStream(os);
-			for(int i=0;i<clients.size();i++) {
-				oos.writeObject(clients.get(i));
-			}
-			for(int i=0;i<agences.size();i++) {
-				oos.writeObject(agences.get(i));
-			}
-			for(int i=0;i<3;i++) {
-				oos.writeObject(voitures1.get(i));
-				oos.writeObject(voitures2.get(i));
-			}
-			
+			oos.writeObject(obj);
 		}catch(IOException e) {e.getMessage();}
 	}
 	
@@ -95,12 +96,6 @@ public class Manager {
 		return obj;
 	}
 	
-	public static Manager getInstance() {
-		return instance;
-	}
-	public static void setInstance(Manager instance) {
-		Manager.instance = instance;
-	}
 	/**
 	 * methode qui fait un appel à la methode acceuil de chaque agence
 	 * @return matrice de String
@@ -110,16 +105,18 @@ public class Manager {
 		try {
 			int j=0;
 			for(int i=0;i<agences.size();i++) {
-				for(int k=0;k<agences.get(i).getVoiture().size();k++) {
+				for(int k=0;k<agences.get(i).getVehicule().size();k++) {
 					if(j==4) {
 						break;
 					}else {
 						st[j]=agences.get(i).acceuil(clients.get(j));
+						save(clients.get(j));
+						save(agences.get(i).getVehicule().get(k));
 						j++;
 					}
 				}
 			}
-		}catch(VoituresDejaLouerException e) {}
+		}catch(VehiculesDejaLouerException e) {}
 		catch(HuileInsuffisasntException e) {}
 		
 		return st;
@@ -133,7 +130,7 @@ public class Manager {
 		try {
 			int j=0;
 			for(int i=0;i<agences.size();i++) {
-				for(int k=0;k<agences.get(i).getVoiture().size();k++) {
+				for(int k=0;k<agences.get(i).getVehicule().size();k++) {
 					if(j==4) {
 						break;
 					}else {
@@ -142,7 +139,7 @@ public class Manager {
 					}
 				}
 			}
-		}catch(RendreVoitureAutreAgenceException e) {}
+		}catch(RendreVehiculeAutreAgenceException e) {}
 		return st;
 	}
 	/**
@@ -156,10 +153,4 @@ public class Manager {
 		}
 		return st;
 	}
-	
-	
-	
-	
-	
-
 }
