@@ -19,7 +19,7 @@ public class Main {
 	 */
 	public Main() {
 		this.view=new View();
-	}
+	} 
 
 	/**
 	 * methode qui appelle les methode du view
@@ -36,13 +36,20 @@ public class Main {
 		System.out.println("\n\t\t\t----------------la location est faite----------------\n");
 		System.out.println("\t\t------------les données sont sauvgardées dans un fichier------------\n");
 		
+		
+		
 		System.out.println("\n\t\t\t----------------Conduction des voitures----------------\n");
 		view.conduire();
 		System.out.println("\n\t\t\t------------les clients conduisent les voitures------------\n");
 		
+		
+		
 		System.out.println("\n\t\t\t----------------le rend des voitures louées----------------\n");
 		view.rendre();
 		System.out.println("\n\t\t\t----------les clients ont rendu les voitures louées---------\n");
+		
+		
+		
 		System.out.println("\n");
 		System.out.println("\t\t\t*************************Historique*************************");
 		System.out.println("\n\t\t----------liste des objets suavgarder dans agencelocation.txt------------\n");

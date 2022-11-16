@@ -1,6 +1,6 @@
 /**
  * 
- * @startuml 
+ * @startuml  
  * class  Client{ 
  * 		-age:int 
  * 		-nom:String
@@ -45,6 +45,8 @@
  * 		+louer():String[][]
  * 		+rendre():String[]
  * 		+ conduire():String[]
+ * 		+save(ArrayList<Object>):void
+ * 		+read():ArrayList<Object>
  * }
  * class View{
  * 		+louer():void

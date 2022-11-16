@@ -60,14 +60,14 @@ public class View {
 	public void read() throws ClassNotFoundException {
 		ArrayList<Object> obj=Manager.getInstance().read();
 		for(int i=0;i<obj.size();i++) {
-			if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Voiture")==0) {
+			if(obj.get(i) instanceof Voiture) {
 				System.out.println(((Voiture)obj.get(i)).toString());
-			}else if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Camion")==0) {
+			}else if(obj.get(i) instanceof Camion) {
 				System.out.println(((Camion)obj.get(i)).toString());
 			}
-			else if(obj.get(i).getClass().getName().compareTo("org.formation.erekysy.agencelocation.model.Client")==0) {
+			else if(obj.get(i) instanceof Client) {
 				System.out.println(((Client)obj.get(i)).toString());
-			}else {
+			}else{
 				System.out.println(((Agence<?>)obj.get(i)).toString());
 			}
 			//System.out.println(obj.get(i).toString());

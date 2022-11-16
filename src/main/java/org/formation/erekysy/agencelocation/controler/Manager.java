@@ -26,6 +26,7 @@ public class Manager {
 	private ArrayList<Agence> agences;
 	private ArrayList<Voiture> vehicule1;
 	private ArrayList<Camion> vehicule2;
+	private ArrayList<Object> array=new ArrayList<Object>();
 	/**
 	 * Constructeur de la classe
 	 */
@@ -47,11 +48,7 @@ public class Manager {
 		vehicule2.add(new Camion("Scania",6));
 	
 		agences.add(new Agence<Voiture>("agence1",vehicule1));
-		agences.add(new Agence<Camion>("agence2",vehicule2));
-		for(int i=0;i<agences.size();i++) {
-			save(agences.get(i));
-		}
-		
+		agences.add(new Agence<Camion>("agence2",vehicule2));	
 		for(int i=0;i<4;i++) {
 			clients.add(new Client("c"+(i+1),(18+(i+1))));
 		}
@@ -63,16 +60,24 @@ public class Manager {
 	public static void setInstance(Manager instance) {
 		Manager.instance = instance;
 	}
-	
+	public ArrayList<Object> getArray() {
+		return array;
+	}
+	public void setArray(ArrayList<Object> array) {
+		this.array = array;
+	}
 	/**
 	 * methode qui permet d'enregistrer un objet passé par ses parametres dans un fichier (agencelocation.txt)
+	 * @param obj ArrayList<Object> des objets à sauvgarder
 	 */
-	public void save(Object obj) {
+	public void save(ArrayList<Object> obj) {
 		
 		Path p=Paths.get("C:\\Users\\hp\\Documents\\java\\agencelocation\\agencelocation.txt");
 		try(OutputStream os=Files.newOutputStream(p)){
 			ObjectOutputStream oos=new ObjectOutputStream(os);
-			oos.writeObject(obj);
+			for(int i=0;i<obj.size();i++) {
+				oos.writeObject(obj.get(i));
+			}
 		}catch(IOException e) {e.getMessage();}
 	}
 	
@@ -105,20 +110,21 @@ public class Manager {
 		try {
 			int j=0;
 			for(int i=0;i<agences.size();i++) {
+				getArray().add(agences.get(i));
 				for(int k=0;k<agences.get(i).getVehicule().size();k++) {
-					if(j==4) {
+					if(j==clients.size()) {
 						break;
 					}else {
 						st[j]=agences.get(i).acceuil(clients.get(j));
-						save(clients.get(j));
-						save(agences.get(i).getVehicule().get(k));
+						getArray().add(clients.get(j));
+						getArray().add(agences.get(i).getVehicule().get(k));
 						j++;
 					}
 				}
 			}
 		}catch(VehiculesDejaLouerException e) {}
 		catch(HuileInsuffisasntException e) {}
-		
+		save(array);
 		return st;
 	}
 	/**
